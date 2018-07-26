@@ -73,7 +73,7 @@ def shuffle_in_unison(a, b):
 def create_Xt_Yt(X, y, percentage=0.8):
     X_train = X[0:int(len(X) * percentage)]
     Y_train = y[0:int(len(y) * percentage)]
-    
+    #X_train = np.expand_dims(X_train,axis=1)
     X_train, Y_train = shuffle_in_unison(X_train, Y_train)
 
     X_test = X[int(len(X) * percentage):]

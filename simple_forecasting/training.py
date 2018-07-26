@@ -39,10 +39,8 @@ class TrainingHistory(Callback):
 
 
 
-TRAIN_SIZE = 30
 TARGET_TIME = 1
 LAG_SIZE = 1
-EMB_SIZE = 1
 
 print('Data loading...')  
 timeseries, dates = load_snp_close()
@@ -52,8 +50,7 @@ plt.savefig('data.png')
 TRAIN_SIZE = 20
 TARGET_TIME = 1
 LAG_SIZE = 1
-EMB_SIZE = 1
-
+HIDDEN_RNN=3
 X, Y = split_into_chunks(timeseries, TRAIN_SIZE, TARGET_TIME, LAG_SIZE, binary=False, scale=True)
 X, Y = np.array(X), np.array(Y)
 X_train, X_test, Y_train, Y_test = create_Xt_Yt(X, Y, percentage=0.9)
@@ -74,6 +71,45 @@ model.add(Dense(1))
 model.add(Activation('linear'))
 model.compile(optimizer='adam', 
               loss='mse')
+#model = Sequential()
+#model.add(LSTM(input_shape=(TRAIN_SIZE), return_sequences=True, units=HIDDEN_RNN))
+#model.add(LSTM(output_dim=HIDDEN_RNN, return_sequences=False))
+#model.add(Dense(2))
+#model.add(Activation('softmax'))
+#model.compile(optimizer='adam', 
+#			  loss='binary_crossentropy', 
+#			  metrics=['accuracy'])
+#model = Sequential()
+#model.add(Convolution1D(input_shape = (TRAIN_SIZE, EMB_SIZE), 
+#                        nb_filter=64,
+#                        filter_length=2,
+#                        border_mode='valid',
+#                        activation='relu',
+#                        subsample_length=1))
+#model.add(MaxPooling1D(pool_length=2))
+#
+#model.add(Convolution1D(input_shape = (TRAIN_SIZE, EMB_SIZE), 
+#                        nb_filter=64,
+#                        filter_length=2,
+#                        border_mode='valid',
+#                        activation='relu',
+#                        subsample_length=1))
+#model.add(MaxPooling1D(pool_length=2))
+#
+#model.add(Dropout(0.25))
+#model.add(Flatten())
+#
+#model.add(Dense(250))
+#model.add(Dropout(0.25))
+#model.add(Activation('relu'))
+#model.add(Dense(2))
+#model.add(Activation('softmax'))
+#
+#history = TrainingHistory()
+#
+#model.compile(optimizer='adam', 
+#			  loss='binary_crossentropy', 
+#			  metrics=['accuracy'])
 
 model.fit(X_train, 
           Y_train, 
