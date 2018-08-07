@@ -50,7 +50,6 @@ plt.savefig('data.png')
 TRAIN_SIZE = 20
 TARGET_TIME = 1
 LAG_SIZE = 1
-HIDDEN_RNN=3
 X, Y = split_into_chunks(timeseries, TRAIN_SIZE, TARGET_TIME, LAG_SIZE, binary=False, scale=True)
 X, Y = np.array(X), np.array(Y)
 X_train, X_test, Y_train, Y_test = create_Xt_Yt(X, Y, percentage=0.9)
@@ -142,8 +141,8 @@ print(mse)
 
 try:
     fig = plt.figure()
-    plt.plot(Y_test[:150], color='black') # BLUE - trained RESULT
-    plt.plot(predicted[:150], color='blue') # RED - trained PREDICTION
+    #plt.plot(Y_test[:150], color='black') # BLUE - trained RESULT
+    #plt.plot(predicted[:150], color='blue') # RED - trained PREDICTION
     plt.plot(Y_testp[:150], color='green') # GREEN - actual RESULT
     plt.plot(new_predicted[:150], color='red') # ORANGE - restored PREDICTION
     plt.show()

@@ -14,16 +14,16 @@ import time
 import pandas as pd
 
 def load_snp_returns():
-    f=pd.read_csv('table.csv',header=0)
+    f=pd.read_csv('/Users/adashaw/Desktop/Deep-Trading/other_LTSM_model/AAPL_data.csv',header=0)
     raw_data = f['Open'].values-f['Close'].values
     raw_dates= f['Date'].values
     return raw_data, raw_dates
 
 
 def load_snp_close():
-    f=pd.read_csv('table.csv',header=0)
-    raw_data = f['Close'].values
-    raw_dates= f['Date'].values
+    f=pd.read_csv('/Users/adashaw/Desktop/Deep-Trading/other_LTSM_model/AAPL_data.csv',header=0)
+    raw_data = f['close'].values
+    raw_dates= f['date'].values
     return raw_data, raw_dates
 
 
